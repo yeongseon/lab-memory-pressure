@@ -1,0 +1,207 @@
+{
+  "cost": 38,
+  "interval": "PT1M",
+  "namespace": "Microsoft.Web/serverFarms",
+  "resourceregion": "koreacentral",
+  "timespan": "2026-04-02T10:54:53Z/2026-04-02T11:14:53Z",
+  "value": [
+    {
+      "displayDescription": "The average memory used across all instances of the plan.",
+      "errorCode": "Success",
+      "id": "/subscriptions/1375a781-21fb-430a-be54-2465c36b0ee2/resourceGroups/rg-memory-pressure-lab/providers/Microsoft.Web/serverFarms/memlabapp-plan/providers/Microsoft.Insights/metrics/MemoryPercentage",
+      "name": {
+        "localizedValue": "Memory Percentage",
+        "value": "MemoryPercentage"
+      },
+      "resourceGroup": "rg-memory-pressure-lab",
+      "timeseries": [
+        {
+          "data": [
+            {
+              "average": 86.0,
+              "timeStamp": "2026-04-02T10:54:00Z"
+            },
+            {
+              "average": 88.0,
+              "timeStamp": "2026-04-02T10:55:00Z"
+            },
+            {
+              "average": 88.0,
+              "timeStamp": "2026-04-02T10:56:00Z"
+            },
+            {
+              "average": 90.0,
+              "timeStamp": "2026-04-02T10:57:00Z"
+            },
+            {
+              "average": 88.0,
+              "timeStamp": "2026-04-02T10:58:00Z"
+            },
+            {
+              "average": 87.0,
+              "timeStamp": "2026-04-02T10:59:00Z"
+            },
+            {
+              "average": 89.0,
+              "timeStamp": "2026-04-02T11:00:00Z"
+            },
+            {
+              "average": 87.0,
+              "timeStamp": "2026-04-02T11:01:00Z"
+            },
+            {
+              "average": 63.0,
+              "timeStamp": "2026-04-02T11:02:00Z"
+            },
+            {
+              "average": 60.0,
+              "timeStamp": "2026-04-02T11:03:00Z"
+            },
+            {
+              "average": 63.0,
+              "timeStamp": "2026-04-02T11:04:00Z"
+            },
+            {
+              "average": 74.0,
+              "timeStamp": "2026-04-02T11:05:00Z"
+            },
+            {
+              "average": 89.0,
+              "timeStamp": "2026-04-02T11:06:00Z"
+            },
+            {
+              "average": 89.0,
+              "timeStamp": "2026-04-02T11:07:00Z"
+            },
+            {
+              "average": 88.0,
+              "timeStamp": "2026-04-02T11:08:00Z"
+            },
+            {
+              "average": 88.0,
+              "timeStamp": "2026-04-02T11:09:00Z"
+            },
+            {
+              "average": 84.0,
+              "timeStamp": "2026-04-02T11:10:00Z"
+            },
+            {
+              "average": 86.0,
+              "timeStamp": "2026-04-02T11:11:00Z"
+            },
+            {
+              "average": 88.0,
+              "timeStamp": "2026-04-02T11:12:00Z"
+            },
+            {
+              "average": 87.0,
+              "timeStamp": "2026-04-02T11:13:00Z"
+            }
+          ],
+          "metadatavalues": []
+        }
+      ],
+      "type": "Microsoft.Insights/metrics",
+      "unit": "Percent"
+    },
+    {
+      "displayDescription": "The average CPU used across all instances of the plan.",
+      "errorCode": "Success",
+      "id": "/subscriptions/1375a781-21fb-430a-be54-2465c36b0ee2/resourceGroups/rg-memory-pressure-lab/providers/Microsoft.Web/serverFarms/memlabapp-plan/providers/Microsoft.Insights/metrics/CpuPercentage",
+      "name": {
+        "localizedValue": "CPU Percentage",
+        "value": "CpuPercentage"
+      },
+      "resourceGroup": "rg-memory-pressure-lab",
+      "timeseries": [
+        {
+          "data": [
+            {
+              "average": 15.0,
+              "timeStamp": "2026-04-02T10:54:00Z"
+            },
+            {
+              "average": 15.0,
+              "timeStamp": "2026-04-02T10:55:00Z"
+            },
+            {
+              "average": 14.0,
+              "timeStamp": "2026-04-02T10:56:00Z"
+            },
+            {
+              "average": 19.0,
+              "timeStamp": "2026-04-02T10:57:00Z"
+            },
+            {
+              "average": 28.0,
+              "timeStamp": "2026-04-02T10:58:00Z"
+            },
+            {
+              "average": 18.0,
+              "timeStamp": "2026-04-02T10:59:00Z"
+            },
+            {
+              "average": 20.0,
+              "timeStamp": "2026-04-02T11:00:00Z"
+            },
+            {
+              "average": 99.0,
+              "timeStamp": "2026-04-02T11:01:00Z"
+            },
+            {
+              "average": 73.0,
+              "timeStamp": "2026-04-02T11:02:00Z"
+            },
+            {
+              "average": 100.0,
+              "timeStamp": "2026-04-02T11:03:00Z"
+            },
+            {
+              "average": 100.0,
+              "timeStamp": "2026-04-02T11:04:00Z"
+            },
+            {
+              "average": 99.0,
+              "timeStamp": "2026-04-02T11:05:00Z"
+            },
+            {
+              "average": 49.0,
+              "timeStamp": "2026-04-02T11:06:00Z"
+            },
+            {
+              "average": 16.0,
+              "timeStamp": "2026-04-02T11:07:00Z"
+            },
+            {
+              "average": 41.0,
+              "timeStamp": "2026-04-02T11:08:00Z"
+            },
+            {
+              "average": 44.0,
+              "timeStamp": "2026-04-02T11:09:00Z"
+            },
+            {
+              "average": 27.0,
+              "timeStamp": "2026-04-02T11:10:00Z"
+            },
+            {
+              "average": 17.0,
+              "timeStamp": "2026-04-02T11:11:00Z"
+            },
+            {
+              "average": 12.0,
+              "timeStamp": "2026-04-02T11:12:00Z"
+            },
+            {
+              "average": 34.0,
+              "timeStamp": "2026-04-02T11:13:00Z"
+            }
+          ],
+          "metadatavalues": []
+        }
+      ],
+      "type": "Microsoft.Insights/metrics",
+      "unit": "Percent"
+    }
+  ]
+}
