@@ -1,6 +1,6 @@
 # Memory Pressure Lab
 
-An experimental lab to reproduce plan-level performance degradation caused by **aggregate memory pressure** on Azure App Service Plan.
+An experimental lab to reproduce plan-level performance degradation caused by **aggregate memory pressure** on Azure App Service Plan. Tests both Flask (ZIP deploy) and Node.js/Express (Web App for Containers) to compare behavior across deployment models.
 
 It demonstrates that even if individual apps are not defective, latency increases and intermittent 5xx errors can occur when multiple lightweight apps cumulatively occupy memory on the same Plan.
 
@@ -263,7 +263,11 @@ az group delete --name rg-memory-pressure-lab --yes --no-wait
 
 ## Experiment Results (2026-04-02)
 
-### Results Summary
+The following results cover both Flask (ZIP deploy) and Node.js (Web App for Containers) experiments.
+
+### Flask / ZIP Deploy Results
+
+#### Results Summary
 
 **Phase A: App Count Scaling (ALLOC_MB=50, then 100 for baseline)**
 
@@ -288,6 +292,38 @@ az group delete --name rg-memory-pressure-lab --yes --no-wait
 | 4 × 175MB | 88-95% | 10-46% | 891ms | 0 | ~360s |
 | 6 × 75MB | 93%+ | 100% | N/A | N/A | CRASH (restart loop) |
 
+**Node.js / Web App for Containers Results**
+
+Phase A: App Count Scaling (ALLOC_MB=50):
+
+| Config | Plan Memory% | CPU% | Avg Response | 5xx | Status |
+|---|---|---|---|---|---|
+| 2 apps × 100MB (baseline) | 74% | 19% | 883ms | 0 | Stable |
+| 3 apps × 50MB | 75% | 33% | 940ms | 0 | Stable |
+| 4 apps × 50MB | 76% | 44% | 902ms | 0 | Stable |
+| 5 apps × 50MB | 73% | 54% | 890ms | 0 | Stable |
+| 6 apps × 50MB | 74% | 32% | 859ms | 0 | Stable |
+| 8 apps × 50MB | 77% | 35% | 850ms | 0 | **Stable (Flask failed here)** |
+
+Phase B: Memory Density Scaling (4 apps fixed):
+
+| Config | Plan Memory% | CPU% | Avg Response | 5xx |
+|---|---|---|---|---|
+| 4 × 75MB | 73% | 33% | 895ms | 0 |
+| 4 × 100MB | 75% | 32% | 904ms | 0 |
+| 4 × 125MB | 75% | 31% | 880ms | 0 |
+| 4 × 150MB | 73% | 32% | 909ms | 0 |
+| 4 × 175MB | 73% | 25% | 922ms | 0 |
+
+### Flask vs Node.js Comparison
+
+Key differences:
+1. Memory reporting: Node.js containers stayed at 73-77% across all configs. Flask reached 85-95%. Container deployment has different memory accounting in Azure Monitor.
+2. Stability: Node.js had 0 errors across ALL configurations including 8×50MB (where Flask failed with 503s) and 4×175MB.
+3. No crash loop: Flask crashed at 6×75MB. Node.js was not tested at this exact config but showed no instability even at 4×175MB (700MB total target allocation).
+4. Cold start: Flask showed 60s→360s exponential degradation. Node.js did not show visible cold-start degradation within tested range.
+5. Hypothesis: Web App for Containers may use different memory isolation/accounting, making plan-level MemoryPercentage less representative of actual pressure for containerized apps.
+
 ### Key Findings
 
 1. **Steady-state response remained stable under light load**: Under this low-throughput workload (single probe per app every ~10s), running apps remained responsive even at 95% observed memory utilization (~880-920ms). Note that the ~900ms baseline includes significant network/frontend overhead, which may mask smaller server-side latency changes.
@@ -302,9 +338,13 @@ az group delete --name rg-memory-pressure-lab --yes --no-wait
 
 6. **Oryx build is a major confound**: Oryx (Azure's build system) consumed 100% CPU for 2-5 minutes during deployment, triggering false degradation signals. Disabling it (SCM_DO_BUILD_DURING_DEPLOYMENT=false) was critical for clean measurements.
 
-### Observed Degradation Zones (Flask / B1 / koreacentral)
+7. **Container deployment shows different memory characteristics**: Node.js containers on Web App for Containers reported ~73-77% memory regardless of allocation, suggesting different memory accounting from ZIP deployment.
 
-> These thresholds were observed in this specific lab configuration and should not be taken as universal B1 guidance.
+8. **Deployment model matters**: The same B1 plan showed dramatically different behavior between ZIP-deployed Flask apps and container-deployed Node.js apps, indicating that degradation thresholds may be deployment-model-specific rather than plan-universal.
+
+### Observed Flask / ZIP Deploy Degradation Zones (B1 / koreacentral)
+
+> These thresholds were observed in this specific lab configuration and should not be taken as universal B1 guidance. Node.js containers did not exhibit the same degradation pattern — the zones may be deployment-model-specific.
 
 - **Safe zone**: Plan Memory < 86%, CPU < 30% — all apps responsive, normal cold starts
 - **Warning zone**: Plan Memory 86-92% — apps run fine but cold starts slow (2-5 min)
