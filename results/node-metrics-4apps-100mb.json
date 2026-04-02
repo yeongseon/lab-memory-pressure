@@ -1,0 +1,106 @@
+{
+  "memory": {
+    "cost": 5,
+    "interval": "PT1M",
+    "namespace": "Microsoft.Web/serverfarms",
+    "resourceregion": "koreacentral",
+    "timespan": "2026-04-02T14:00:45Z/2026-04-02T14:06:19Z",
+    "value": [
+      {
+        "displayDescription": "The average memory used across all instances of the plan.",
+        "errorCode": "Success",
+        "id": "/subscriptions/1375a781-21fb-430a-be54-2465c36b0ee2/resourceGroups/rg-memory-pressure-lab/providers/Microsoft.Web/serverfarms/memlabapp-plan/providers/Microsoft.Insights/metrics/MemoryPercentage",
+        "name": {
+          "localizedValue": "Memory Percentage",
+          "value": "MemoryPercentage"
+        },
+        "resourceGroup": "rg-memory-pressure-lab",
+        "timeseries": [
+          {
+            "data": [
+              {
+                "average": 77.0,
+                "timeStamp": "2026-04-02T14:00:00Z"
+              },
+              {
+                "average": 75.0,
+                "timeStamp": "2026-04-02T14:01:00Z"
+              },
+              {
+                "average": 75.0,
+                "timeStamp": "2026-04-02T14:02:00Z"
+              },
+              {
+                "average": 74.0,
+                "timeStamp": "2026-04-02T14:03:00Z"
+              },
+              {
+                "average": 75.0,
+                "timeStamp": "2026-04-02T14:04:00Z"
+              },
+              {
+                "average": 75.0,
+                "timeStamp": "2026-04-02T14:05:00Z"
+              }
+            ],
+            "metadatavalues": []
+          }
+        ],
+        "type": "Microsoft.Insights/metrics",
+        "unit": "Percent"
+      }
+    ]
+  },
+  "cpu": {
+    "cost": 5,
+    "interval": "PT1M",
+    "namespace": "Microsoft.Web/serverfarms",
+    "resourceregion": "koreacentral",
+    "timespan": "2026-04-02T14:00:45Z/2026-04-02T14:06:19Z",
+    "value": [
+      {
+        "displayDescription": "The average CPU used across all instances of the plan.",
+        "errorCode": "Success",
+        "id": "/subscriptions/1375a781-21fb-430a-be54-2465c36b0ee2/resourceGroups/rg-memory-pressure-lab/providers/Microsoft.Web/serverfarms/memlabapp-plan/providers/Microsoft.Insights/metrics/CpuPercentage",
+        "name": {
+          "localizedValue": "CPU Percentage",
+          "value": "CpuPercentage"
+        },
+        "resourceGroup": "rg-memory-pressure-lab",
+        "timeseries": [
+          {
+            "data": [
+              {
+                "average": 58.0,
+                "timeStamp": "2026-04-02T14:00:00Z"
+              },
+              {
+                "average": 38.0,
+                "timeStamp": "2026-04-02T14:01:00Z"
+              },
+              {
+                "average": 23.0,
+                "timeStamp": "2026-04-02T14:02:00Z"
+              },
+              {
+                "average": 41.0,
+                "timeStamp": "2026-04-02T14:03:00Z"
+              },
+              {
+                "average": 15.0,
+                "timeStamp": "2026-04-02T14:04:00Z"
+              },
+              {
+                "average": 18.0,
+                "timeStamp": "2026-04-02T14:05:00Z"
+              }
+            ],
+            "metadatavalues": []
+          }
+        ],
+        "type": "Microsoft.Insights/metrics",
+        "unit": "Percent"
+      }
+    ]
+  }
+}
