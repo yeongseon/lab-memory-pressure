@@ -31,8 +31,9 @@ param deployAcr bool = false
 param acrName string = '${namePrefix}acr'
 
 var planName = '${namePrefix}-plan'
+var deployedAcrLoginServer = '${acrName}.azurecr.io'
 var containerRegistryLoginServer = !empty(containerImage)
-  ? (deployAcr ? acr.outputs.acrLoginServer : split(containerImage, '/')[0])
+  ? (deployAcr ? deployedAcrLoginServer : split(containerImage, '/')[0])
   : ''
 
 module plan 'modules/appservice-plan.bicep' = {
@@ -69,4 +70,4 @@ module webApps 'modules/webapp.bicep' = [for i in range(0, appCount): {
 output planName string = plan.outputs.planName
 output appHostnames array = [for i in range(0, appCount): webApps[i].outputs.defaultHostname]
 output appNames array = [for i in range(0, appCount): webApps[i].outputs.appName]
-output acrLoginServer string = deployAcr ? acr.outputs.acrLoginServer : ''
+output acrLoginServer string = deployAcr ? deployedAcrLoginServer : ''
